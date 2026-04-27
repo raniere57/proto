@@ -1,0 +1,33 @@
+services:
+  backend:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: megalink-backend
+    restart: unless-stopped
+    ports:
+      - "8456:8456"
+    env_file:
+      - ./back/.env
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://admin:qualidade%40trunks.57@187.62.153.52:5432/novo_protocolamento
+      - DATABASE_URL_SYNC=postgresql://admin:qualidade@trunks.57@187.62.153.52:5432/novo_protocolamento
+    networks:
+      - megalink-net
+
+  frontend:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: megalink-frontend
+    restart: unless-stopped
+    ports:
+      - "3456:80"
+    depends_on:
+      - backend
+    networks:
+      - megalink-net
+
+networks:
+  megalink-net:
+    driver: bridge

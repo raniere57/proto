@@ -1,0 +1,70 @@
+/* Dark theme overrides for custom styles */
+html.dark {
+  --bg-body: #0f1117;
+  --bg-card: #1a1d2e;
+  --bg-sidebar: #0d0f1a;
+  --bg-input: #252836;
+  --text-primary: #e4e6eb;
+  --text-secondary: #b0b3b8;
+  --text-muted: #6c757d;
+  --border-color: #2d3041;
+  --shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+html.dark body {
+  background: var(--bg-body);
+  color: var(--text-primary);
+}
+
+html.dark .card {
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+}
+
+html.dark .page-header h1 { color: var(--text-primary); }
+html.dark .page-header p { color: var(--text-secondary); }
+
+html.dark .info-item { background: var(--bg-input); color: var(--text-primary); }
+html.dark .info-item strong { color: var(--text-primary); }
+html.dark .chat-msg { background: var(--bg-input); }
+html.dark .descricao { background: var(--bg-input); }
+html.dark .text-block { background: var(--bg-input); }
+
+html.dark .p-datatable-header { background: var(--bg-card) !important; }
+html.dark .p-datatable-thead > tr > th {
+  background: var(--bg-input) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+html.dark .p-datatable-tbody > tr {
+  background: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+html.dark .p-datatable-tbody > tr:hover { background: var(--bg-input) !important; }
+
+html.dark .stat-card.danger,
+html.dark .stat-card.success,
+html.dark .stat-card.warning {
+  background: var(--bg-card);
+}
+html.dark .stat-card.danger { border-left-color: #e74c3c !important; }
+html.dark .stat-card.success { border-left-color: #27ae60 !important; }
+html.dark .stat-card.warning { border-left-color: #f39c12 !important; }
+
+html.dark .alert-critical { background: #1e1515; }
+html.dark .alert-critical h3 { color: #e74c3c; }
+html.dark .critical-item { border-color: var(--border-color); }
+
+html.dark .sidebar { background: var(--bg-sidebar); }
+html.dark .sidebar-overlay { background: rgba(0,0,0,0.6); }
+
+html.dark .select-display,
+html.dark .p-inputtext,
+html.dark .p-password input {
+  background: var(--bg-input) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+html.dark .empty-state { color: var(--text-muted); }

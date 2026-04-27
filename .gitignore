@@ -1,0 +1,34 @@
+# === Python / Backend ===
+back/venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+*.log
+*.pid
+
+# === Node / Frontend ===
+front/node_modules/
+front/dist/
+front/.vite/
+*.tsbuildinfo
+
+# === IDE / Editors ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# === Env / Secrets ===
+.env
+.env.local
+.env.*.local
+
+# === Docker ===
+.docker/
