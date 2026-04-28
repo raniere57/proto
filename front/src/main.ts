@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 import PrimeVue from 'primevue/config'
 import Aura from '@primevue/themes/aura'
 import ToastService from 'primevue/toastservice'
-import BaseStyle from '@primevue/core/base/style'
+import { css } from '@primeuix/styled'
 import InputTextStyle from 'primevue/inputtext/style'
 import PasswordStyle from 'primevue/password/style'
 import ButtonStyle from 'primevue/button/style'
@@ -32,16 +32,20 @@ app.use(ToastService)
 registerPrimeVueComponents(app)
 
 try {
-  ;(BaseStyle as any).loadCSS?.()
-  ;(BaseStyle as any).loadStyle?.()
-  ;(InputTextStyle as any).loadCSS?.()
-  ;(InputTextStyle as any).loadStyle?.()
-  ;(PasswordStyle as any).loadCSS?.()
-  ;(PasswordStyle as any).loadStyle?.()
-  ;(ButtonStyle as any).loadCSS?.()
-  ;(ButtonStyle as any).loadStyle?.()
+  injectPrimeVueStyle('inputtext', (InputTextStyle as any).style)
+  injectPrimeVueStyle('password', (PasswordStyle as any).style)
+  injectPrimeVueStyle('button', (ButtonStyle as any).style)
 } catch (e) {
   console.warn('PrimeVue style preload failed (non-critical):', e)
+}
+
+function injectPrimeVueStyle(name: string, rawCSS: string) {
+  const resolved = (css as any)(['', ''], rawCSS) as string
+  const el = document.createElement('style')
+  el.setAttribute('type', 'text/css')
+  el.setAttribute('data-primevue-style-id', name)
+  el.textContent = resolved
+  document.head.appendChild(el)
 }
 
 const theme = useTheme()
