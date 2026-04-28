@@ -4,6 +4,9 @@ import PrimeVue from 'primevue/config'
 import Aura from '@primevue/themes/aura'
 import ToastService from 'primevue/toastservice'
 import BaseStyle from '@primevue/core/base/style'
+import InputTextStyle from 'primevue/inputtext/style'
+import PasswordStyle from 'primevue/password/style'
+import ButtonStyle from 'primevue/button/style'
 import { registerPrimeVueComponents } from './plugins/primevue'
 import { useTheme } from './composables/useTheme'
 import App from './App.vue'
@@ -28,15 +31,17 @@ app.use(PrimeVue, {
 app.use(ToastService)
 registerPrimeVueComponents(app)
 
-// PrimeVue 4 injeta CSS lazy em onMounted. Forçamos o carregamento
-// dos estilos base e das variáveis do tema antes do mount para
-// evitar FOUC (Flash of Unstyled Content) na primeira renderização.
 try {
-  const bs = BaseStyle as any
-  bs.loadCSS?.()
-  bs.loadStyle?.()
+  ;(BaseStyle as any).loadCSS?.()
+  ;(BaseStyle as any).loadStyle?.()
+  ;(InputTextStyle as any).loadCSS?.()
+  ;(InputTextStyle as any).loadStyle?.()
+  ;(PasswordStyle as any).loadCSS?.()
+  ;(PasswordStyle as any).loadStyle?.()
+  ;(ButtonStyle as any).loadCSS?.()
+  ;(ButtonStyle as any).loadStyle?.()
 } catch (e) {
-  console.warn('PrimeVue base style preload failed (non-critical):', e)
+  console.warn('PrimeVue style preload failed (non-critical):', e)
 }
 
 const theme = useTheme()
